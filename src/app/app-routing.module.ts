@@ -4,9 +4,16 @@ import { MainComponent } from './components/main/main.component';
 import { ProductsComponent } from './components/products/products.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 const routes: Routes = [
-  { path: '', component: MainComponent },
+  {
+    path: '',
+    redirectTo: 'loginUser',
+    pathMatch: 'full'
+  },
+  { path: 'loginUser', component: AuthComponent },
+  { path: 'main', component: MainComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent }
