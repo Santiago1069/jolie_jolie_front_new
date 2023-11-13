@@ -3,9 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/Product';
 import { ProductService } from 'src/app/services/product.service';
 
-declare var $: any;
-declare function jsMain([]): any;
-declare function jsSlickCustom([]): any;
 
 @Component({
   selector: 'app-products',
@@ -36,11 +33,7 @@ export class ProductsComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      jsMain($);
-      jsSlickCustom($);
-    }, 100);
-    
+
     this.getProducts();
   }
 
@@ -67,5 +60,6 @@ export class ProductsComponent implements OnInit {
       }
     })
   }
+  
 
 }
