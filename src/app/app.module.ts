@@ -20,6 +20,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddTokenInterceptor } from './services/add-token.interceptor';
 import { CommonModule } from '@angular/common';
+import { HeaderCartComponent } from './components/header-cart/header-cart.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { CommonModule } from '@angular/common';
     MainComponent,
     AboutComponent,
     ContactComponent,
-    AuthComponent
+    AuthComponent,
+    HeaderCartComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,
