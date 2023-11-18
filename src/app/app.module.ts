@@ -22,6 +22,7 @@ import { AddTokenInterceptor } from './services/add-token.interceptor';
 import { CommonModule } from '@angular/common';
 import { HeaderCartComponent } from './components/header-cart/header-cart.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     ContactComponent,
     AuthComponent,
     HeaderCartComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    RecoverPasswordComponent
   ],
   imports: [
     CommonModule,
