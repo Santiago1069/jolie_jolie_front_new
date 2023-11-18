@@ -4,11 +4,11 @@ import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-header-cart',
+  templateUrl: './header-cart.component.html',
+  styleUrls: ['./header-cart.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderCartComponent implements OnInit {
 
   user: any = [];
 

@@ -5,6 +5,8 @@ import { ProductsComponent } from './components/products/products.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 
 const routes: Routes = [
   {
@@ -16,7 +18,9 @@ const routes: Routes = [
   { path: 'main', component: MainComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'contact', component: ContactComponent }
+  { path: 'contact', component: ContactComponent },
+  { path: 'forgotPassword', component: ForgotPasswordComponent },
+  { path: 'recoverPassword', component: RecoverPasswordComponent }
 ];
 
 @NgModule({

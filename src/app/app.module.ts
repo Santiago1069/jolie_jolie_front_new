@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPaginationModule } from 'ngx-pagination'
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,8 +16,13 @@ import { MainComponent } from './components/main/main.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AuthComponent } from './components/auth/auth.component';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddTokenInterceptor } from './services/add-token.interceptor';
+import { CommonModule } from '@angular/common';
+import { HeaderCartComponent } from './components/header-cart/header-cart.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 
 @NgModule({
   declarations: [
@@ -26,15 +35,25 @@ import { FormsModule } from '@angular/forms';
     MainComponent,
     AboutComponent,
     ContactComponent,
-    AuthComponent
+    AuthComponent,
+    HeaderCartComponent,
+    ForgotPasswordComponent,
+    RecoverPasswordComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true},
+    ProductsComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

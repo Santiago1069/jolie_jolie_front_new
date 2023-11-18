@@ -2421,7 +2421,7 @@ input.num-product::-webkit-inner-spin-button {
 /*//////////////////////////////////////////////////////////////////
 [ Size ]*/
 .size-101 {
-  min-width: 161px;
+  min-width: 100%;
   height: 46px;
 }
 
@@ -2451,7 +2451,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .size-107 {
-  min-width: 145px;
+  min-width: 100%;
   height: 40px;
 }
 

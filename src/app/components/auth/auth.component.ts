@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Login } from 'src/app/models/Login';
 import { User } from 'src/app/models/User';
@@ -17,11 +18,37 @@ export class AuthComponent implements OnInit {
   loginObjeto: Login = new Login();
   documents: any = [];
   users: any = [];
+  loginForm: FormGroup;
+  registerForm: FormGroup;
 
-  constructor(private AuthService: AuthService, private router: Router) { }
+  constructor(private AuthService: AuthService, private router: Router, private formBuilder: FormBuilder) { 
+    this.loginForm = this.formBuilder.group({});
+    this.registerForm = this.formBuilder.group({});
+  }
 
   ngOnInit(): void {
     this.getTipeDocument();
+    this.loginFormGroupFuction();
+    this.registerFormGroupFuction();
+  }
+
+  loginFormGroupFuction() {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      contrasena: ['', [Validators.required]]
+    });
+  }
+
+  registerFormGroupFuction() {
+    this.registerForm = this.formBuilder.group({
+      nombre_completo: ['', [Validators.required]],
+      tipo_documento: ['', [Validators.required]],
+      numero_documento: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      contrasena: ['', [Validators.required]],
+      celular: ['', [Validators.required]],
+      check: ['', [Validators.required]]
+    });
   }
 
   getTipeDocument() {
