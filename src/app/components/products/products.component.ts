@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CartProduct } from 'src/app/models/CartProduct';
+import { Compra } from 'src/app/models/Compra';
 import { Product } from 'src/app/models/Product';
+import { AuthService } from 'src/app/services/auth.service';
 import { PaymentService } from 'src/app/services/payment.service';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -25,6 +27,8 @@ export class ProductsComponent implements OnInit {
     id_categoria: 0
   };
 
+  direccion: string = '';
+
   productCart: any = [];
 
   valores: any = [];
@@ -36,11 +40,37 @@ export class ProductsComponent implements OnInit {
 
   public page!: number;
 
+  compra: Compra = {
+    direccion: '',
+    estado: 0,
+    valor_total: 0,
+    cantidad_productos: 0,
+    id_usuario_fk: '',
+    id_zona_fk: 0,
+    metodopago: ''
+  };
 
-  constructor(private productService: ProductService, private paymentService: PaymentService) { }
+  comprasProducts: any = [];
+
+  user: any = [];
+
+
+  constructor(private productService: ProductService, private paymentService: PaymentService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getProducts();
+    this.getUser();
+  }
+
+  getUser(){
+    this.authService.profile().subscribe({
+      next: (res) => {
+        this.user = res;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
   getProducts() {
@@ -67,9 +97,10 @@ export class ProductsComponent implements OnInit {
     })
   }
 
-addProductCart(name: string, price: number, image: string | undefined, quantity: number) {
+  addProductCart(id_producto: number, name: string, price: number, image: string | undefined, quantity: number) {
     if (quantity > 0) {
       this.productCart.push({
+        id_producto: id_producto,
         name: name,
         price: price,
         image: image,
@@ -99,7 +130,9 @@ addProductCart(name: string, price: number, image: string | undefined, quantity:
   }
 
   payment() {
-    this.paymentService.createPayment().subscribe({
+    this.creataCompra();
+    this.comprasProductsFuction();
+    this.paymentService.createPayment(this.user.identificacion).subscribe({
       next: (res) => {
         this.valores = res
         window.location.href = this.valores.init_point
@@ -116,6 +149,55 @@ addProductCart(name: string, price: number, image: string | undefined, quantity:
     if (cerrarModal) {
       cerrarModal.click();
     }
+  }
+
+  cerrarModalcart() {
+    const cerrarModal = document.getElementById("closeModalCart");
+    if (cerrarModal) {
+      cerrarModal.click();
+    }
+  }
+
+  creataCompra() {
+    this.llenarCompra();
+    console.log(this.compra);
+    this.paymentService.createCompra(this.compra).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  llenarCompra() {
+    this.compra.direccion = this.direccion;
+    this.compra.estado = 0;
+    this.compra.valor_total = this.totalPriceProducts;
+    this.compra.cantidad_productos = this.cantidadProducts();
+    this.compra.id_usuario_fk = this.user.identificacion;
+    this.compra.id_zona_fk = 1;
+    this.compra.metodopago = 'pendiente';
+  }
+
+  cantidadProducts(): number  {
+    for (let i = 0; i < this.productCart.length; i++) {
+      this.quantityProducts += this.productCart[i].quantityProducts;
+    }
+    return this.quantityProducts;
+  }
+
+  comprasProductsFuction() {
+    this.comprasProducts = this.productCart;
+    this.paymentService.createCompraProduct(this.comprasProducts).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
 }

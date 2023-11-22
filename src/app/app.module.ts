@@ -23,6 +23,9 @@ import { CommonModule } from '@angular/common';
 import { HeaderCartComponent } from './components/header-cart/header-cart.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
+import { PaymentFailureComponent } from './components/payment-failure/payment-failure.component';
+import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
+import { ListComprasComponent } from './components/list-compras/list-compras.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { RecoverPasswordComponent } from './components/recover-password/recover-
     AuthComponent,
     HeaderCartComponent,
     ForgotPasswordComponent,
-    RecoverPasswordComponent
+    RecoverPasswordComponent,
+    PaymentFailureComponent,
+    PaymentSuccessComponent,
+    ListComprasComponent
   ],
   imports: [
     CommonModule,

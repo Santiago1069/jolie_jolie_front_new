@@ -1,0 +1,70 @@
+.img-4by3-sm {
+    width: 4rem
+}
+
+.rounded-3 {
+    border-radius: .5rem !important
+}
+
+.badge {
+    --dashui-badge-padding-x: 0.65em;
+    --dashui-badge-padding-y: 0.35em;
+    --dashui-badge-font-weight: 700;
+    --dashui-badge-color: #fff;
+    --dashui-badge-border-radius: 0.375rem;
+    border-radius: var(--dashui-badge-border-radius);
+    color: var(--dashui-badge-color);
+    display: inline-block;
+    font-size: var(--dashui-badge-font-size);
+    font-weight: var(--dashui-badge-font-weight);
+    line-height: 1;
+    padding: var(--dashui-badge-padding-y) var(--dashui-badge-padding-x);
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap
+}
+
+.badge-primary-soft {
+    background-color: rgba(98,75,255,.1);
+    color: #624bff
+}
+
+.badge-secondary-soft {
+    background-color: rgba(71,85,105,.1);
+    color: #475569
+}
+
+.badge-success-soft {
+    background-color: rgba(25,135,84,.1);
+    color: #198754
+}
+
+.badge-info-soft {
+    background-color: rgba(13,202,240,.1);
+    color: #0dcaf0
+}
+
+.badge-warning-soft {
+    background-color: rgba(255,193,7,.1);
+    color: #ffc107
+}
+
+.badge-danger-soft {
+    background-color: rgba(220,53,69,.1);
+    color: #dc3545
+}
+
+.badge-light-soft {
+    background-color: rgba(241,245,249,.1);
+    color: #f1f5f9
+}
+
+.badge-dark-soft {
+    background-color: rgba(30,41,59,.1);
+    color: #1e293b
+}
+
+.badge-white-soft {
+    background-color: hsla(0,0%,100%,.1);
+    color: #fff
+}
