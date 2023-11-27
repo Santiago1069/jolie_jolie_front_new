@@ -7,6 +7,12 @@ import { AuthService } from 'src/app/services/auth.service';
 import { PaymentService } from 'src/app/services/payment.service';
 import { ProductService } from 'src/app/services/product.service';
 
+
+declare var $: any;
+declare function jsMain([]): any;
+declare function jsSlickCustom([]): any;
+
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -55,14 +61,21 @@ export class ProductsComponent implements OnInit {
   user: any = [];
 
 
+
+
   constructor(private productService: ProductService, private paymentService: PaymentService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      jsMain($);
+      jsSlickCustom($);
+    }, 100);
+
     this.getProducts();
     this.getUser();
   }
 
-  getUser(){
+  getUser() {
     this.authService.profile().subscribe({
       next: (res) => {
         this.user = res;
@@ -129,9 +142,9 @@ export class ProductsComponent implements OnInit {
     this.totalPriceProductsCart();
   }
 
-  payment() {
-    this.creataCompra();
-    this.comprasProductsFuction();
+  async payment() {
+    const idCompra = await this.creataCompra();
+    this.comprasProductsFuction(idCompra);
     this.paymentService.createPayment(this.user.identificacion).subscribe({
       next: (res) => {
         this.valores = res
@@ -158,17 +171,19 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  creataCompra() {
+  async creataCompra() {
     this.llenarCompra();
-    console.log(this.compra);
-    this.paymentService.createCompra(this.compra).subscribe({
-      next: (res) => {
-        console.log(res);
+    let idCompra: number = 0;
+    (await this.paymentService.createCompra(this.compra)).subscribe({
+      next: (res: any) => {
+        idCompra = res.id_compra;
       },
       error: (err) => {
         console.log(err);
       }
     })
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    return idCompra
   }
 
   llenarCompra() {
@@ -181,16 +196,16 @@ export class ProductsComponent implements OnInit {
     this.compra.metodopago = 'pendiente';
   }
 
-  cantidadProducts(): number  {
+  cantidadProducts(): number {
     for (let i = 0; i < this.productCart.length; i++) {
       this.quantityProducts += this.productCart[i].quantityProducts;
     }
     return this.quantityProducts;
   }
 
-  comprasProductsFuction() {
+  comprasProductsFuction(idCompra: any) {
     this.comprasProducts = this.productCart;
-    this.paymentService.createCompraProduct(this.comprasProducts).subscribe({
+    this.paymentService.createCompraProduct(this.comprasProducts, idCompra).subscribe({
       next: (res) => {
         console.log(res);
       },
@@ -199,5 +214,6 @@ export class ProductsComponent implements OnInit {
       }
     })
   }
+
 
 }

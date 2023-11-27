@@ -16,7 +16,8 @@
                 <th>Estado</th>
                 <th>Fecha</th>
                 <th>Cantidad productos</th>
-                <th>Valor Total</th>
+                <th>Valor unidad</th>
+                <th>Valor total</th>
                 <th>Direccion</th>
                 <th>Metodo de pago</th>
             </tr>
@@ -25,10 +26,10 @@
             <tr *ngFor="let compra of compras | paginate: {itemsPerPage: 8, currentPage: page} | filter:searchText">
                 <td class="ps-0 sorting_1">
                     <div class="d-flex align-items-center">
-                        <img src="https://i.postimg.cc/pXVQW6P1/Blusa1.jpg" alt="" class="img-4by3-sm rounded-3">
+                        <img src="{{compra.imagen}}" alt="" class="img-4by3-sm rounded-3">
                         <div class="ms-3">
                             <h5 class="mb-0">
-                                Apple airpods
+                                {{compra.nombre_producto}}
                             </h5>
                             <span class="text-warning">
                                 <i class="mdi mdi-star"> </i>
@@ -47,7 +48,8 @@
                     <span class="badge badge-success-soft">Pago exitoso</span>
                 </td>
                 <td>{{compra.fecha.slice(0, 10)}}</td>
-                <td>{{compra.cantidad_productos}}</td>
+                <td>{{compra.cantidad}}</td>
+                <td>${{compra.valor_unidad}}</td>
                 <td>${{compra.valor_total}}</td>
                 <td>{{compra.direccion}}</td>
                 <td>{{compra.metodo_pago}}</td>

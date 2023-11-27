@@ -25,12 +25,12 @@ export class PaymentService {
     return this.http.get(`${this.API_URL}/failure`);
   }
 
-  createCompra(compra: Compra) {
+  async createCompra(compra: Compra) {
     return this.http.post(`${this.API_URL}/createCompra`, compra);
   }
 
-  createCompraProduct(compraProducts: any) {
-    return this.http.post(`${this.API_URL}/createComprasProduct`, compraProducts);
+  createCompraProduct(compraProducts: any, idCompra: any) {
+    return this.http.post(`${this.API_URL}/createComprasProduct/${idCompra}`, compraProducts);
   }
 
 }
