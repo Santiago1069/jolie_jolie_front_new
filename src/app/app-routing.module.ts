@@ -7,6 +7,9 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
+import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
+import { PaymentFailureComponent } from './components/payment-failure/payment-failure.component';
+import { ListComprasComponent } from './components/list-compras/list-compras.component';
 
 const routes: Routes = [
   {
@@ -20,7 +23,10 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
-  { path: 'recoverPassword', component: RecoverPasswordComponent }
+  { path: 'recoverPassword', component: RecoverPasswordComponent },
+  { path: 'success', component: PaymentSuccessComponent },
+  { path: 'failure', component: PaymentFailureComponent },
+  { path: 'listCompras', component: ListComprasComponent}
 ];
 
 @NgModule({

@@ -28,13 +28,13 @@ export class AddTokenInterceptor implements HttpInterceptor {
     
     return next.handle(request) // con esta funciona las alertas de validacion del login con el de abajo no
 
-    // return next.handle(request).pipe(
-    //   catchError((error: HttpErrorResponse) => {
-    //     if(error.status === 401){
-    //       this.router.navigate(['/loginUser'])
-    //     }
-    //     return throwError(() => new Error('Error'))
-    //   })
-    // );
+    /* return next.handle(request).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if(error.status === 401){
+          this.router.navigate(['/loginUser'])
+        }
+        return throwError(() => new Error('Error'))
+      })
+    ); */
   }
 }
