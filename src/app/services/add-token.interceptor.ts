@@ -14,18 +14,18 @@ import Swal from 'sweetalert2';
 @Injectable()
 export class AddTokenInterceptor implements HttpInterceptor {
 
-  
+
   constructor(private router: Router, ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('tocken');
 
     if(token){
       console.log('Token valido')
       request = request.clone({ setHeaders: { authorization: `Bearer ${token}`}})
     }
-    
+
     return next.handle(request) // con esta funciona las alertas de validacion del login con el de abajo no
 
     /* return next.handle(request).pipe(

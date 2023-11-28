@@ -6,6 +6,11 @@ import { Login } from 'src/app/models/Login';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
+import { CookieService } from 'ngx-cookie-service';
+import { get } from 'http';
+import { env } from 'process';
+import { environment } from 'src/environments/environment';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-auth',
@@ -21,9 +26,13 @@ export class AuthComponent implements OnInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
 
-  constructor(private AuthService: AuthService, private router: Router, private formBuilder: FormBuilder) { 
+  constructor(private AuthService: AuthService, private router: Router, private formBuilder: FormBuilder, private cookieService: CookieService) {
     this.loginForm = this.formBuilder.group({});
     this.registerForm = this.formBuilder.group({});
+  }
+  guardarDatos(datos: any): void {
+    this.cookieService.set('misDatos', JSON.stringify(datos));
+    window.location.href = environment. adminUrl
   }
 
   ngOnInit(): void {
@@ -111,16 +120,8 @@ export class AuthComponent implements OnInit {
 
     this.AuthService.login(this.loginObjeto).subscribe({
       next: (token) => {
-        Swal.fire(
-          'Muy bien',
-          'Inicio de sesion exitoso!!',
-          'success'
-        )
-
-        localStorage.setItem('token', token as string)
-
-        this.router.navigate(['/main']);
-
+        localStorage.setItem('tocken', token as string);
+        this.getUser();
       },
       error: (e: HttpErrorResponse) => {
         if (e.error.msg) {
@@ -141,6 +142,21 @@ export class AuthComponent implements OnInit {
     }
     )
 
+  }
+  getUser() {
+    this.AuthService.profile().subscribe(
+      res => {
+        this.users = res;
+        if (this.users.id_perfiles_fk === 1) {
+          this.guardarDatos({ user: this.loginObjeto.correo, pwd: this.loginObjeto.password as string });
+        } else {
+          this.router.navigate(['/main']);
+        }
+      },
+      err => {
+        console.log(err)
+      }
+    )
   }
 
 }
