@@ -39,7 +39,7 @@
                     <div class="block2-pic hov-img0" style="height: 100%;">
                         <img src="{{product.imagen}}" alt="IMG-PRODUCT">
 
-                        <a href="#"
+                        <a href="javascript:void(0)"
                             class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
                             (click)="getOneProduct(product.id_producto)">
                             Ver detalle
@@ -48,7 +48,7 @@
 
                     <div class="block2-txt flex-w flex-t p-t-14">
                         <div class="block2-txt-child1 flex-col-l ">
-                            <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                            <a class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                 {{product.nombre_producto}}
                             </a>
 
@@ -206,6 +206,7 @@
             <div class="modal-body">
                 <label for="email" class="form-label">Ingresa la direccion de envio</label>
                 <input type="text" class="form-control"  [(ngModel)]="direccion">
+                <small class="small" style="color: rgb(157, 157, 157)">Ejemplo: Calle 123 #1A - 2, Medellin, Antioquia, Colombia</small>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
