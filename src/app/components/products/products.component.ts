@@ -69,7 +69,7 @@ export class ProductsComponent implements OnInit {
     setTimeout(() => {
       jsMain($);
       jsSlickCustom($);
-    }, 100);
+    }, 3000);
 
     this.getProducts();
     this.getUser();
