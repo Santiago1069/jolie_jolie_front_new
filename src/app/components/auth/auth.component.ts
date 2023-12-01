@@ -119,7 +119,7 @@ export class AuthComponent implements OnInit {
 
         localStorage.setItem('token', token as string)
 
-        this.router.navigate(['/main']);
+        this.router.navigate(['/products']);
 
       },
       error: (e: HttpErrorResponse) => {
