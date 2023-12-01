@@ -10,7 +10,7 @@ import { Login } from '../models/Login';
 })
 export class AuthService {
 
-  API_URL = 'http://localhost:3000';
+  API_URL = 'https://api-jolie-jolie.onrender.com';
 
   constructor(private http: HttpClient) { }
 

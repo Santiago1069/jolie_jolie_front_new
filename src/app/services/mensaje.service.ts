@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class MensajeService {
 
-  API_URL = 'http://localhost:3000';
+  API_URL = 'https://api-jolie-jolie.onrender.com';
 
   constructor(private http: HttpClient) { }
 
