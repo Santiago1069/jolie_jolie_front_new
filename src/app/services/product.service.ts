@@ -10,7 +10,7 @@ import {CartProduct}  from '../models/CartProduct';
 })
 export class ProductService {
 
-  API_URL = 'https://api-jolie-jolie.onrender.com';
+  API_URL = 'http://localhost:3000';
 
 
   constructor(private http: HttpClient) {

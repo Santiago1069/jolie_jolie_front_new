@@ -53,7 +53,7 @@ export class ProductsComponent implements OnInit {
     cantidad_productos: 0,
     id_usuario_fk: '',
     id_zona_fk: 0,
-    metodopago: ''
+    metodopago: 0
   };
 
   comprasProducts: any = [];
@@ -149,6 +149,7 @@ export class ProductsComponent implements OnInit {
       next: (res) => {
         this.valores = res
         window.location.href = this.valores.init_point
+        this.productCart = [];
       },
       error: (err) => {
         console.log(err);
@@ -193,7 +194,7 @@ export class ProductsComponent implements OnInit {
     this.compra.cantidad_productos = this.cantidadProducts();
     this.compra.id_usuario_fk = this.user.identificacion;
     this.compra.id_zona_fk = 1;
-    this.compra.metodopago = 'pendiente';
+    this.compra.metodopago = 1;
   }
 
   cantidadProducts(): number {

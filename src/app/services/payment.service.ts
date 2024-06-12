@@ -9,7 +9,7 @@ import { ComprasProducts } from '../models/ComprasProducts';
 export class PaymentService {
 
   
-  API_URL = 'https://api-jolie-jolie.onrender.com';
+  API_URL = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 

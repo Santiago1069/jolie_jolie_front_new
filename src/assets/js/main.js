@@ -308,7 +308,7 @@ function jsMain($, undefined) {
     $('.js-addcart-detail').each(function () {
         var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
         $(this).on('click', function () {
-            swal(nameProduct, "acabas de agregar un producto a tu carrito", "success");
+            swal("Muy bien", "acabas de agregar un producto a tu carrito", "success");
         });
     });
 

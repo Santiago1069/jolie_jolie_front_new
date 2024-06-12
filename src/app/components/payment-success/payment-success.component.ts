@@ -23,7 +23,7 @@ export class PaymentSuccessComponent implements OnInit {
       confirmButtonText: 'Ir al inicio',
     }).then((result) => {
       if (result.isConfirmed) {
-        window.location.href = 'https://jolie-jolie-front.onrender.com//main';
+        window.location.href = 'http://localhost:4200/listCompras';
       }
     })
   }
