@@ -5,7 +5,7 @@ export class Compra {
     cantidad_productos: number;
     id_usuario_fk: string;
     id_zona_fk: number;
-    metodopago: string
+    metodopago: number
 
     constructor() {
         this.direccion = "";
@@ -14,6 +14,6 @@ export class Compra {
         this.cantidad_productos = 0;
         this.id_usuario_fk = "";
         this.id_zona_fk = 0;
-        this.metodopago = "";
+        this.metodopago = 0;
     }
 }

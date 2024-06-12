@@ -24,7 +24,7 @@ export class PaymentFailureComponent implements OnInit {
       confirmButtonText: 'Volver al inicio',
     }).then((result) => {
       if (result.isConfirmed) {
-        window.location.href = 'http://localhost:4200/main';
+        window.location.href = 'localhost:4200/main';
       }
     })
   }
