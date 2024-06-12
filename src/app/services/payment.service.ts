@@ -9,7 +9,7 @@ import { ComprasProducts } from '../models/ComprasProducts';
 export class PaymentService {
 
   
-  API_URL = 'http://localhost:3000';
+  API_URL = 'https://jolie-jolie-back.vercel.app';
 
   constructor(private http: HttpClient) { }
 

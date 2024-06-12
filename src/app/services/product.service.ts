@@ -10,7 +10,7 @@ import {CartProduct}  from '../models/CartProduct';
 })
 export class ProductService {
 
-  API_URL = 'http://localhost:3000';
+  API_URL = 'https://jolie-jolie-back.vercel.app';
 
 
   constructor(private http: HttpClient) {

@@ -10,7 +10,7 @@ import { Login } from '../models/Login';
 })
 export class AuthService {
 
-  API_URL = 'http://localhost:3000';
+  API_URL = 'https://jolie-jolie-back.vercel.app';
 
   constructor(private http: HttpClient) { }
 
